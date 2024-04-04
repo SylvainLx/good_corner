@@ -5,6 +5,7 @@ import { ApolloServer } from "@apollo/server";
 import { expressMiddleware } from "@apollo/server/express4";
 import { dataSource } from "./dataSource";
 import { IngredientResolver } from "./resolvers/IngredientResolver";
+import cors from "cors";
 
 const port = 5000;
 const app = express();
@@ -23,7 +24,12 @@ const startApollo = async () => {
   const apolloServer = new ApolloServer<MyContext>({ schema });
   await apolloServer.start();
 
-  app.use("/graphql", express.json(), expressMiddleware(apolloServer));
+  app.use(
+    "/graphql",
+    cors<cors.CorsRequest>(),
+    express.json(),
+    expressMiddleware(apolloServer)
+  );
 };
 startApollo();
 

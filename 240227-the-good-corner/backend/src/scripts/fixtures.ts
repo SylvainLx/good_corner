@@ -13,11 +13,66 @@ const categoriesData = [
   {
     title: "Others",
   },
+  {
+    title: "Cars",
+  },
+  {
+    title: "Bikes",
+  },
+  {
+    title: "House",
+  },
+  {
+    title: "Gaming",
+  },
+  {
+    title: "Clothes",
+  },
 ];
 
 const adsData = [
   {
     title: "Bike",
+    description: "My awesome blue bike",
+    imgUrl: "",
+    location: "Lille",
+    owner: "Loic",
+    price: 200,
+  },
+  {
+    title: "House",
+    description: "My awesome blue bike",
+    imgUrl: "",
+    location: "Lille",
+    owner: "Loic",
+    price: 200,
+  },
+  {
+    title: "Gaming",
+    description: "My awesome blue bike",
+    imgUrl: "",
+    location: "Lille",
+    owner: "Loic",
+    price: 200,
+  },
+  {
+    title: "Clothes",
+    description: "My awesome blue bike",
+    imgUrl: "",
+    location: "Lille",
+    owner: "Loic",
+    price: 200,
+  },
+  {
+    title: "Cars",
+    description: "My awesome blue bike",
+    imgUrl: "",
+    location: "Lille",
+    owner: "Loic",
+    price: 200,
+  },
+  {
+    title: "Others",
     description: "My awesome blue bike",
     imgUrl: "",
     location: "Lille",

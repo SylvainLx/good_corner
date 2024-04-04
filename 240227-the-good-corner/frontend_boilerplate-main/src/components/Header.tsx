@@ -14,7 +14,7 @@ export default function Header() {
     const fetchCategories = async () => {
       try {
         const { data } = await axios.get<Category[]>(
-          "http://localhost:5000/categories",
+          "http://localhost:8000/categories",
         );
         setCategories(data);
       } catch (e) {
@@ -24,7 +24,7 @@ export default function Header() {
     fetchCategories();
   }, []);
 
-  const hSearch = () => {};
+  const hSearch = () => { };
 
   return (
     <header className={styles.header}>

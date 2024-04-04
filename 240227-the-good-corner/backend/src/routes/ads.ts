@@ -90,20 +90,22 @@ router.post("/", async (req, res) => {
           tags.push(tag);
         }
       }
-
-    const ad = Ad.create({
-      title: req.body.title,
-      description: req.body.description,
-      owner: req.body.owner,
-      price: req.body.price,
-      imgUrl: req.body.imgUrl,
-      location: req.body.location,
-      category: category,
-      tags: tags,
-    });
-
-    await Ad.insert(ad);
-    res.status(201).json(ad);
+    try {
+      const ad = Ad.create({
+        title: req.body.title,
+        description: req.body.description,
+        owner: req.body.owner,
+        price: req.body.price,
+        imgUrl: req.body.imgUrl,
+        location: req.body.location,
+        category: category,
+        tags: tags,
+      });
+      await Ad.insert(ad);
+      res.status(201).json(ad);
+    } catch (error) {
+      console.log(error, "toto");
+    }
   } catch (error) {
     res
       .status(500)

@@ -1,7 +1,24 @@
 import Head from "next/head";
-import styles from "@/styles/Home.module.css";
+import { gql, useQuery } from "@apollo/client";
+
+const GET_RECIPES = gql`
+  query GetRecipes {
+    recipes {
+      id
+      title
+      ingredients {
+        title
+      }
+    }
+  }
+`;
 
 export default function Home() {
+  const { data, loading, error } = useQuery(GET_RECIPES)
+
+  if (loading) return <p>Loading...</p>
+  if (error) return <p>Error: {error.message}</p>
+
   return (
     <>
       <Head>

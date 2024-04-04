@@ -1,6 +1,10 @@
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent } from "react";
 import styles from "../styles/NewAd.module.css";
 import axios from "axios";
+import { POST_AD } from "@/graphql/ads.schema";
+import { useMutation, useQuery } from "@apollo/client";
+import { GET_CATEGORIES } from "@/graphql/categories.schema";
+import { useRouter } from "next/router";
 
 type Category = {
   id: number;
@@ -8,26 +12,18 @@ type Category = {
 };
 
 export default function NewAd() {
-  const [categories, setCategories] = useState<Category[]>([]);
-  useEffect(() => {
-    const fetchCategories = async () => {
-      const { data } = await axios.get<Category[]>(
-        "http://localhost:5000/categories",
-      );
-      setCategories(data);
-    };
-    fetchCategories();
-  }, []);
+  const { data, loading } = useQuery(GET_CATEGORIES);
+  const router = useRouter();
+
+  const [postAd] = useMutation(POST_AD);
 
   const hSubmit = (evt: FormEvent) => {
     evt.preventDefault();
 
     const formData = new FormData(evt.target as HTMLFormElement);
     const formJson = Object.fromEntries(formData.entries());
-
-    axios.post("http://localhost:5000/ads", formJson);
-
-    console.log(formJson);
+    postAd({ variables: { ...formJson, price: Number(formJson.price) } });
+    router.push("/")
   };
 
   return (
@@ -44,16 +40,17 @@ export default function NewAd() {
         <input className={styles["text-field"]} name="price" />
       </label>
       <br />
-      <label>
+      {loading ? <p>Loading...</p> : <label>
         Catégorie
         <select name="category">
-          {categories.map((category) => (
+          {data && data.category.map((category: Category) => (
             <option key={category.id} value={category.id}>
               {category.title}
             </option>
           ))}
         </select>
       </label>
+      }
       <br />
       <label>
         Description

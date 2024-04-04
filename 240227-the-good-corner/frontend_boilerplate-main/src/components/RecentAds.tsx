@@ -1,25 +1,13 @@
-import { useEffect, useState } from "react";
-import styles from "../styles/RecentAds.module.css";
-import AdCard, { AdCardProps } from "./AdCard";
-import axios from "axios";
 import AdCards from "./AdCards";
+import { GET_ADS } from "../graphql/ads.schema";
+import { useQuery } from "@apollo/client";
 
 export default function RecentAds() {
-  const [ads, setAds] = useState<AdCardProps[]>([]);
+  const { loading, error, data } = useQuery(GET_ADS);
+  console.log(data)
 
-  useEffect(() => {
-    const fetchAds = async () => {
-      try {
-        const { data } = await axios.get<AdCardProps[]>(
-          "http://localhost:5000/ads",
-        );
-        setAds(data);
-      } catch (e) {
-        console.error(e);
-      }
-    };
-    fetchAds();
-  }, []);
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error {error.message}</p>;
 
-  return <AdCards title="Annonces récentes" ads={ads} />;
+  return <AdCards title="Annonces récentes" ads={data.ad} />;
 }

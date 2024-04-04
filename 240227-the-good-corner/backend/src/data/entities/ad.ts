@@ -1,3 +1,4 @@
+import { Field, ObjectType } from "type-graphql";
 import {
   BaseEntity,
   BeforeInsert,
@@ -12,37 +13,48 @@ import { Category } from "./category";
 import { Tag } from "./tag";
 
 @Entity()
+@ObjectType()
 export class Ad extends BaseEntity {
   @PrimaryGeneratedColumn()
-  id: number;
+  @Field()
+  id!: number;
 
   @Column()
-  title: string;
+  @Field()
+  title!: string;
 
   @Column()
+  @Field()
   description?: string;
 
   @Column()
-  owner: string;
+  @Field()
+  owner!: string;
 
   @Column()
-  price: number;
+  @Field()
+  price!: number;
 
   @Column()
-  imgUrl: string;
+  @Field()
+  imgUrl!: string;
 
   @Column()
-  location: string;
+  @Field()
+  location!: string;
 
   @Column()
-  createdAt: Date;
+  @Field()
+  createdAt!: Date;
 
-  @ManyToOne(() => Category, (category) => category.ads, { eager: true })
-  category: Category;
+  @Field((_type) => Category)
+  @ManyToOne((_type) => Category, (category) => category.ads, { eager: true })
+  category!: Category;
 
-  @ManyToMany(() => Tag, (tag) => tag.ads, { eager: true })
+  @Field((_type) => [Tag])
+  @ManyToMany((_type) => Tag, (tag) => tag.ads, { eager: true })
   @JoinTable()
-  tags: Tag[];
+  tags?: Tag[];
 
   @BeforeInsert()
   updateCreationDate() {
