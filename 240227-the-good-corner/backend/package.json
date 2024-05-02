@@ -11,13 +11,15 @@
     "migration:down": "npm run typeorm migration:revert",
     "migration:create": "typeorm-ts-node-commonjs migration:create",
     "fixtures:load": "ts-node-dev ./src/scripts/fixtures.ts",
-    "db:reset": "rm -rf data/* && npm run migration:generate && npm run migration:up && npm run fixtures:load"
+    "db:reset": "rm -rf data/* && npm run migration:generate && npm run migration:up && npm run fixtures:load",
+    "generate": "graphql-codegen --config src/client/codegen.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@apollo/server": "^4.10.2",
+    "@graphql-codegen/cli": "^5.0.2",
     "@types/cors": "^2.8.17",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
@@ -25,6 +27,7 @@
     "graphql": "^16.8.1",
     "graphql-scalars": "^1.23.0",
     "mysql": "^2.18.1",
+    "pg": "^8.11.5",
     "reflect-metadata": "^0.2.2",
     "type-graphql": "^2.0.0-beta.6",
     "typeorm": "^0.3.20"

@@ -88,7 +88,7 @@ export const DELETE_AD = gql`
 
 export const EDIT_AD = gql`
   mutation EditAd(
-    $id: !
+    $id: Float!
     $title: String!
     $description: String!
     $owner: String!

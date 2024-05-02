@@ -11,7 +11,7 @@ export default function AdsPerCategory() {
   async function fetchAds() {
     if (!router.query.id) return;
     const { data } = await axios.get<AdCardProps[]>(
-      `http://localhost:5000/ads?category=${router.query.id}`,
+      `http://localhost:8000/ads?category=${router.query.id}`,
     );
     setAds(data);
   }

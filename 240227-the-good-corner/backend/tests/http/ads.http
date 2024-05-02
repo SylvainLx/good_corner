@@ -1,20 +1,20 @@
-GET http://localhost:8000/ads
+GET http://localhost:8080/ads
 
 ### 
-GET http://localhost:8000/ads/1
+GET http://localhost:8080/ads/1
 
 ###
-GET http://localhost:8000/ads?categoryId=1
+GET http://localhost:8080/ads?categoryId=1
 
 ###
-GET http://localhost:8000/ads?needle=uit
+GET http://localhost:8080/ads?needle=uit
 
 ###
-GET http://localhost:8000/ads?
+GET http://localhost:8080/ads?
 
 
 ###
-POST http://localhost:8000/ads
+POST http://localhost:8080/ads
 Content-Type: application/json
 
 {
@@ -30,10 +30,10 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:8000/ads/7
+DELETE http://localhost:8080/ads/7
 
 ### 
-PUT http://localhost:8000/ads/6
+PUT http://localhost:8080/ads/6
 Content-Type: application/json
 
 {
@@ -65,7 +65,7 @@ Content-Type: application/json
 
 ###
 ###
-PATCH http://localhost:8000/ads/2
+PATCH http://localhost:8080/ads/2
 Content-Type: application/json
 
 {

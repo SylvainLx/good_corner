@@ -7,7 +7,7 @@ type Props = {
   ads: AdCardProps[];
 };
 export default function AdCards({ title, ads }: Props) {
-  const [cart, setCart] = useState(0);
+  const [cart, setCart] = useState<number>(0);
 
   return (
     <>

@@ -8,7 +8,6 @@ import { DELETE_AD, EDIT_AD, GET_AD, POST_AD } from "@/graphql/ads.schema";
 import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
 
 if (process.env.NODE_ENV !== "production") {
-  // Adds messages only in a dev environment
   loadDevMessages();
   loadErrorMessages();
 }

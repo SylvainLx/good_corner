@@ -1,6 +1,5 @@
 import { FormEvent } from "react";
 import styles from "../styles/NewAd.module.css";
-import axios from "axios";
 import { POST_AD } from "@/graphql/ads.schema";
 import { useMutation, useQuery } from "@apollo/client";
 import { GET_CATEGORIES } from "@/graphql/categories.schema";
@@ -25,7 +24,6 @@ export default function NewAd() {
     postAd({ variables: { ...formJson, price: Number(formJson.price) } });
     router.push("/")
   };
-
   return (
     <form onSubmit={hSubmit}>
       <label>
